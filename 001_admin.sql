@@ -14,12 +14,13 @@
 DROP TABLE IF EXISTS APGADMIN_CCExpirySchedular_Settings;
 -- !40101 SET @saved_cs_client     = @@character_set_client 
 -- !40101 SET character_set_client = utf8
-CREATE TABLE `usruser` (
-  `id` int(9) NOT NULL auto_increment,
-  `name` varchar(30) NOT NULL default '',
-  `pass` varchar(30) default NULL,
-  `last` datetime default NULL,
-  `hits` int(9) NOT NULL default '0',
-  PRIMARY KEY  (`id`),
-  KEY `name_index` (`name`) 
-);
+CREATE TABLE FOO (
+FOO_ID INTEGER NOT NULL
+,FOO_VALUE VARCHAR(30)
+)
+;
+
+ALTER TABLE FOO ADD CONSTRAINT PK_FOO PRIMARY KEY (FOO_ID)
+;
+INSERT INTO FOO (FOO_ID, FOO_VALUE) VALUES (233, 'This is added by siva')
+;
