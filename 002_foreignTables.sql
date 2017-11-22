@@ -1,3 +1,19 @@
+DROP TABLE IF EXISTS `APG_Permission`
+;
+-- !40101 SET @saved_cs_client     = @@character_set_client 
+-- !40101 SET character_set_client = utf8 
+CREATE TABLE `APG_Permission` (
+  `permission_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `menu_name` varchar(45) NOT NULL,
+  `operation` varchar(20) NOT NULL,
+  `permission_key` varchar(60) NOT NULL,
+  `partner_permission` tinyint(4) NOT NULL,
+  `ui_display` tinyint(4) NOT NULL,
+  PRIMARY KEY (`permission_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=latin1
+;
+-- !40101 SET character_set_client = @saved_cs_client 
+
 --
 -- Table structure for table `APG_Channel`
 --
