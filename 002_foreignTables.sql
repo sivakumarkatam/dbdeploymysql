@@ -1,4 +1,33 @@
 --
+-- Table structure for table `APG_Channel`
+--
+
+DROP TABLE IF EXISTS `APG_Channel`
+;
+-- !40101 SET @saved_cs_client     = @@character_set_client  
+-- !40101 SET character_set_client = utf8  
+CREATE TABLE `APG_Channel` (
+  `ChannelID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `ChannelKey` varchar(50) NOT NULL,
+  `PartnerID` bigint(20) NOT NULL,
+  `PrefixTransactionID` varchar(50) DEFAULT NULL,
+  `Status` tinyint(4) NOT NULL,
+  `CreatedDateUTC` datetime NOT NULL,
+  `LastModifiedUTC` datetime DEFAULT NULL,
+  `DefaultProviderKey` varchar(50) NOT NULL,
+  `isDeleted` tinyint(4) NOT NULL,
+  `DefaultProviderId` bigint(20) NOT NULL,
+  PRIMARY KEY (`ChannelID`),
+  UNIQUE KEY `ChannelKey` (`ChannelKey`,`PartnerID`),
+  KEY `PartnerID` (`PartnerID`),
+  KEY `DefaultProviderId` (`DefaultProviderId`),
+  CONSTRAINT `FK_CHANNEL_PID` FOREIGN KEY (`PartnerID`) REFERENCES `APG_Partner` (`PartnerID`),
+  CONSTRAINT `FK_PID_CHANNEL` FOREIGN KEY (`DefaultProviderId`) REFERENCES `APG_PaymentProvider` (`ProviderID`),
+  CONSTRAINT `FKctb2mhqmho8wmrexn9omj1spx` FOREIGN KEY (`PartnerID`) REFERENCES `APG_Partner` (`PartnerID`)
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=latin1
+;
+
+--
 -- Table structure for table `APGADMIN_Validation_Settings`
 --
 
@@ -86,35 +115,6 @@ CREATE TABLE `APG_BlacklistPayeeRemarks` (
 ;
 -- !40101 SET character_set_client = @saved_cs_client  
 
---
--- Table structure for table `APG_Channel`
---
-
-DROP TABLE IF EXISTS `APG_Channel`
-;
--- !40101 SET @saved_cs_client     = @@character_set_client  
--- !40101 SET character_set_client = utf8  
-CREATE TABLE `APG_Channel` (
-  `ChannelID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `ChannelKey` varchar(50) NOT NULL,
-  `PartnerID` bigint(20) NOT NULL,
-  `PrefixTransactionID` varchar(50) DEFAULT NULL,
-  `Status` tinyint(4) NOT NULL,
-  `CreatedDateUTC` datetime NOT NULL,
-  `LastModifiedUTC` datetime DEFAULT NULL,
-  `DefaultProviderKey` varchar(50) NOT NULL,
-  `isDeleted` tinyint(4) NOT NULL,
-  `DefaultProviderId` bigint(20) NOT NULL,
-  PRIMARY KEY (`ChannelID`),
-  UNIQUE KEY `ChannelKey` (`ChannelKey`,`PartnerID`),
-  KEY `PartnerID` (`PartnerID`),
-  KEY `DefaultProviderId` (`DefaultProviderId`),
-  CONSTRAINT `FK_CHANNEL_PID` FOREIGN KEY (`PartnerID`) REFERENCES `APG_Partner` (`PartnerID`),
-  CONSTRAINT `FK_PID_CHANNEL` FOREIGN KEY (`DefaultProviderId`) REFERENCES `APG_PaymentProvider` (`ProviderID`),
-  CONSTRAINT `FKctb2mhqmho8wmrexn9omj1spx` FOREIGN KEY (`PartnerID`) REFERENCES `APG_Partner` (`PartnerID`)
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=latin1
-;
--- !40101 SET character_set_client = @saved_cs_client  
 
 --
 -- Table structure for table `APG_ChannelCurrency`
