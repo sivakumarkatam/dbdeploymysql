@@ -11,7 +11,7 @@
 -- Table structure for table `APGADMIN_CCExpirySchedular_Settings`
 --
 --
-DROP TABLE IF EXISTS APGADMIN_CCExpirySchedular_Settings;
+DROP TABLE IF EXISTS FOO;
 CREATE TABLE FOO (
 FOO_ID INTEGER NOT NULL
 ,FOO_VALUE VARCHAR(30)
