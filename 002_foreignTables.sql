@@ -592,7 +592,8 @@ CREATE TABLE `APG_TransactionItem` (
 -- Table structure for table `APG_TransactionLog`
 --
 
-DROP TABLE IF EXISTS `APG_TransactionLog`;
+DROP TABLE IF EXISTS `APG_TransactionLog`
+;
 -- !40101 SET @saved_cs_client     = @@character_set_client  
 -- !40101 SET character_set_client = utf8  
 CREATE TABLE `APG_TransactionLog` (
