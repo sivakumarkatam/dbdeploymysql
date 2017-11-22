@@ -16,7 +16,7 @@ DROP TABLE IF EXISTS APGADMIN_CCExpirySchedular_Settings;
 -- !40101 SET @saved_cs_client     = @@character_set_client 
 -- !40101 SET character_set_client = utf8
 CREATE TABLE `APGADMIN_CCExpirySchedular_Settings` (
-  `SettingId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `SettingId` bigint(20) NOT NULL auto_increment,
   `EmailTemplate` text NOT NULL,
   `SenderEmailId` varchar(255) NOT NULL,
   `EmailSubject` text NOT NULL,
