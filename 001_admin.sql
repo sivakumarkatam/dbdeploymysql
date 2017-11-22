@@ -12,9 +12,9 @@
 -- Table structure for table `APGADMIN_CCExpirySchedular_Settings`
 --
 --
-DROP TABLE IF EXISTS `APGADMIN_CCExpirySchedular_Settings`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+DROP TABLE IF EXISTS APGADMIN_CCExpirySchedular_Settings;
+-- !40101 SET @saved_cs_client     = @@character_set_client 
+-- !40101 SET character_set_client = utf8
 CREATE TABLE `APGADMIN_CCExpirySchedular_Settings` (
   `SettingId` bigint(20) NOT NULL AUTO_INCREMENT,
   `EmailTemplate` text NOT NULL,
