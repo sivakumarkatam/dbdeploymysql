@@ -1,0 +1,12 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /tmp/
+hooks:
+  AfterInstall:
+    - location: deploymentscripts/serviceapp.bash
+      runas: root
+  ApplicationStart:
+    - location: deploymentscripts/startapp.bash
+      runas: root
