@@ -28,4 +28,6 @@ CREATE TABLE `APGADMIN_CCExpirySchedular_Settings` (
  ,SuccessEmailSubject text NOT NULL
  ,ExpiryType varchar(10) NOT NULL
  ,PRIMARY KEY (`SettingId`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+)
+ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1
+;
