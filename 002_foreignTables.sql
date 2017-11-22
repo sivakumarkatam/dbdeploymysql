@@ -28,6 +28,43 @@ CREATE TABLE `APG_Channel` (
 ;
 
 --
+-- Table structure for table `APG_TransactionPayment`
+--
+
+DROP TABLE IF EXISTS `APG_TransactionPayment`
+;
+-- !40101 SET @saved_cs_client     = @@character_set_client  
+-- !40101 SET character_set_client = utf8  
+CREATE TABLE `APG_TransactionPayment` (
+  `PaymentID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `TransactionID` bigint(20) NOT NULL,
+  `PaymentRefID` varchar(20) NOT NULL,
+  `PaymentType` varchar(20) NOT NULL,
+  `PaymentProviderKey` varchar(20) NOT NULL,
+  `Amount` text NOT NULL,
+  `Status` int(11) NOT NULL,
+  `errorcode` varchar(100) DEFAULT NULL,
+  `errordesc` text,
+  `createddateutc` datetime NOT NULL,
+  `LastModifiedUTC` datetime DEFAULT NULL,
+  `RetryCount` int(11) NOT NULL,
+  `TransType` varchar(10) NOT NULL,
+  `BankApprovalCode` varchar(100) DEFAULT NULL,
+  `ApprovalDate` datetime DEFAULT NULL,
+  `CCValidation` tinyint(4) NOT NULL,
+  `CardReplacement` tinyint(4) NOT NULL,
+  `MID` varchar(100) NOT NULL,
+  `Bank` varchar(100) NOT NULL,
+  `FavCardDataKey` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`PaymentID`),
+  KEY `TransactionID` (`TransactionID`),
+  KEY `TransactionID_2` (`TransactionID`),
+  CONSTRAINT `FK_TID` FOREIGN KEY (`TransactionID`) REFERENCES `APG_Transaction` (`TransactionID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+;
+-- !40101 SET character_set_client = @saved_cs_client  
+
+--
 -- Table structure for table `APGADMIN_Validation_Settings`
 --
 
@@ -557,42 +594,6 @@ CREATE TABLE `APG_TransactionLog` (
 ;
 -- !40101 SET character_set_client = @saved_cs_client  
 
---
--- Table structure for table `APG_TransactionPayment`
---
-
-DROP TABLE IF EXISTS `APG_TransactionPayment`
-;
--- !40101 SET @saved_cs_client     = @@character_set_client  
--- !40101 SET character_set_client = utf8  
-CREATE TABLE `APG_TransactionPayment` (
-  `PaymentID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `TransactionID` bigint(20) NOT NULL,
-  `PaymentRefID` varchar(20) NOT NULL,
-  `PaymentType` varchar(20) NOT NULL,
-  `PaymentProviderKey` varchar(20) NOT NULL,
-  `Amount` text NOT NULL,
-  `Status` int(11) NOT NULL,
-  `errorcode` varchar(100) DEFAULT NULL,
-  `errordesc` text,
-  `createddateutc` datetime NOT NULL,
-  `LastModifiedUTC` datetime DEFAULT NULL,
-  `RetryCount` int(11) NOT NULL,
-  `TransType` varchar(10) NOT NULL,
-  `BankApprovalCode` varchar(100) DEFAULT NULL,
-  `ApprovalDate` datetime DEFAULT NULL,
-  `CCValidation` tinyint(4) NOT NULL,
-  `CardReplacement` tinyint(4) NOT NULL,
-  `MID` varchar(100) NOT NULL,
-  `Bank` varchar(100) NOT NULL,
-  `FavCardDataKey` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`PaymentID`),
-  KEY `TransactionID` (`TransactionID`),
-  KEY `TransactionID_2` (`TransactionID`),
-  CONSTRAINT `FK_TID` FOREIGN KEY (`TransactionID`) REFERENCES `APG_Transaction` (`TransactionID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
-;
--- !40101 SET character_set_client = @saved_cs_client  
 
 --
 -- Table structure for table `APG_TransactionPaymentRefund`
