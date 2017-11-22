@@ -14,6 +14,23 @@ CREATE TABLE `APG_Permission` (
 ;
 -- !40101 SET character_set_client = @saved_cs_client 
 
+DROP TABLE IF EXISTS `APG_Roles`
+;
+-- !40101 SET @saved_cs_client     = @@character_set_client  
+-- !40101 SET character_set_client = utf8  
+CREATE TABLE `APG_Roles` (
+  `role_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `role_name` varchar(45) NOT NULL,
+  `role_key` varchar(45) NOT NULL,
+  `partner_id` bigint(20) DEFAULT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`role_id`),
+  KEY `FK_PARTNER_idx` (`partner_id`),
+  CONSTRAINT `FK_ROLE_PARTNER` FOREIGN KEY (`partner_id`) REFERENCES `APG_Partner` (`PartnerID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=latin1
+;
+-- !40101 SET character_set_client = @saved_cs_client  
+
 --
 -- Table structure for table `APG_Channel`
 --
@@ -526,26 +543,7 @@ CREATE TABLE `APG_Role_Permission` (
 ;
 -- !40101 SET character_set_client = @saved_cs_client  
 
---
--- Table structure for table `APG_Roles`
---
 
-DROP TABLE IF EXISTS `APG_Roles`
-;
--- !40101 SET @saved_cs_client     = @@character_set_client  
--- !40101 SET character_set_client = utf8  
-CREATE TABLE `APG_Roles` (
-  `role_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `role_name` varchar(45) NOT NULL,
-  `role_key` varchar(45) NOT NULL,
-  `partner_id` bigint(20) DEFAULT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`role_id`),
-  KEY `FK_PARTNER_idx` (`partner_id`),
-  CONSTRAINT `FK_ROLE_PARTNER` FOREIGN KEY (`partner_id`) REFERENCES `APG_Partner` (`PartnerID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=latin1
-;
--- !40101 SET character_set_client = @saved_cs_client  
 
 --
 -- Table structure for table `APG_TransactionDiscountInfo`
