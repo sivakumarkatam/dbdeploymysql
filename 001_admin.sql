@@ -14,20 +14,12 @@
 DROP TABLE IF EXISTS APGADMIN_CCExpirySchedular_Settings;
 -- !40101 SET @saved_cs_client     = @@character_set_client 
 -- !40101 SET character_set_client = utf8
-CREATE TABLE `APGADMIN_CCExpirySchedular_Settings` (
- SettingId bigint(20) NOT NULL auto_increment
- ,EmailTemplate text NOT NULL
- ,SenderEmailId varchar(255) NOT NULL
- ,EmailSubject text NOT NULL
- ,NoOfMonthsBeforeExpiry int(11) NOT NULL
- ,NoOfEmailsPerMonth int(11) NOT NULL
- ,DefaultReceiverEmailId varchar(255) NOT NULL
- ,ErrorEmailSubject text NOT NULL
- ,ErrorEmailTemplate text NOT NULL
- ,SuccessEmailTemplate text NOT NULL
- ,SuccessEmailSubject text NOT NULL
- ,ExpiryType varchar(10) NOT NULL
- ,PRIMARY KEY (`SettingId`)
-)
-ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1
-;
+CREATE TABLE `usruser` (
+  `id` int(9) NOT NULL auto_increment,
+  `name` varchar(30) NOT NULL default '',
+  `pass` varchar(30) default NULL,
+  `last` datetime default NULL,
+  `hits` int(9) NOT NULL default '0',
+  PRIMARY KEY  (`id`),
+  KEY `name_index` (`name`) 
+);
