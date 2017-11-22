@@ -105,7 +105,7 @@ CREATE TABLE `APG_AdditionalCharges` (
   CONSTRAINT `FK_AC_TID` FOREIGN KEY (`TransactionID`) REFERENCES `APG_Transaction` (`TransactionID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
 ;
-/*!40101 SET character_set_client = @saved_cs_client */;
+-- !40101 SET character_set_client = @saved_cs_client 
 
 --
 -- Table structure for table `APG_BinList`
