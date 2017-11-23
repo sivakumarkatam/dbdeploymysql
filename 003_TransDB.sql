@@ -1311,13 +1311,15 @@ CREATE TABLE `FPX_BankList` (
 DROP TABLE IF EXISTS `MonthReport`
 ;
 -- !50001 DROP VIEW IF EXISTS `MonthReport` 
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
+SET @saved_cs_client     = @@character_set_client
+;
+SET character_set_client = utf8
+;
 -- !50001 CREATE VIEW `MonthReport` AS SELECT 
---  `TransactionID`,
+-- `TransactionID`,
 -- 1 AS `PaymentID`,
 -- 1 AS `transactionrefid`,
---  1 AS `PartnerKey`,
+-- 1 AS `PartnerKey`,
 -- 1 AS `createdateutc`,
 -- 1 AS `ChannelKey`,
 -- 1 AS `Bank`,
