@@ -637,7 +637,44 @@ CREATE TABLE `APG_PartnerDirectLink` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
 ;
 -- !40101 SET character_set_client = @saved_cs_client  
+--
+-- Table structure for table `APG_TransactionPayment`
+--
 
+DROP TABLE IF EXISTS `APG_TransactionPayment`
+;
+-- !40101 SET @saved_cs_client     = @@character_set_client  
+-- !40101 SET character_set_client = utf8  
+CREATE TABLE `APG_TransactionPayment` (
+  `PaymentID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `TransactionID` bigint(20) NOT NULL,
+  `PaymentRefID` varchar(20) NOT NULL,
+  `PaymentType` varchar(20) NOT NULL,
+  `PaymentProviderKey` varchar(20) NOT NULL,
+  `Amount` text NOT NULL,
+  `Status` int(11) NOT NULL,
+  `errorcode` varchar(100) DEFAULT NULL,
+  `errordesc` text,
+  `createddateutc` datetime NOT NULL,
+  `LastModifiedUTC` datetime DEFAULT NULL,
+  `RetryCount` int(11) NOT NULL,
+  `TransType` varchar(10) NOT NULL,
+  `BankApprovalCode` varchar(100) DEFAULT NULL,
+  `ApprovalDate` datetime DEFAULT NULL,
+  `CCValidation` tinyint(4) NOT NULL,
+  `CardReplacement` tinyint(4) NOT NULL,
+  `MID` varchar(100) NOT NULL,
+  `Bank` varchar(100) NOT NULL,
+  `FavCardDataKey` bigint(20) DEFAULT NULL,
+  `ipAddress` text,
+  `userAgent` text,
+  PRIMARY KEY (`PaymentID`),
+  KEY `TransactionID` (`TransactionID`),
+  KEY `TransactionID_2` (`TransactionID`),
+  CONSTRAINT `FK_TID` FOREIGN KEY (`TransactionID`) REFERENCES `APG_Transaction` (`TransactionID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=6605 DEFAULT CHARSET=latin1
+;
+-- !40101 SET character_set_client = @saved_cs_client  
 --
 -- Table structure for table `APG_PaymentInfo_CTB`
 --
@@ -862,6 +899,26 @@ CREATE TABLE `APG_ReversalQueue` (
 ) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=latin1
 ;
 -- !40101 SET character_set_client = @saved_cs_client  
+--
+-- Table structure for table `APG_Roles`
+--
+
+DROP TABLE IF EXISTS `APG_Roles`
+;
+-- !40101 SET @saved_cs_client     = @@character_set_client  
+-- !40101 SET character_set_client = utf8  
+CREATE TABLE `APG_Roles` (
+  `role_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `role_name` varchar(45) NOT NULL,
+  `role_key` varchar(45) NOT NULL,
+  `partner_id` bigint(20) DEFAULT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`role_id`),
+  KEY `FK_PARTNER_idx` (`partner_id`),
+  CONSTRAINT `FK_ROLE_PARTNER` FOREIGN KEY (`partner_id`) REFERENCES `APG_Partner` (`PartnerID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+;
+-- !40101 SET character_set_client = @saved_cs_client  
 
 --
 -- Table structure for table `APG_Role_Permission`
@@ -884,26 +941,7 @@ CREATE TABLE `APG_Role_Permission` (
 ;
 -- !40101 SET character_set_client = @saved_cs_client  
 
---
--- Table structure for table `APG_Roles`
---
 
-DROP TABLE IF EXISTS `APG_Roles`
-;
--- !40101 SET @saved_cs_client     = @@character_set_client  
--- !40101 SET character_set_client = utf8  
-CREATE TABLE `APG_Roles` (
-  `role_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `role_name` varchar(45) NOT NULL,
-  `role_key` varchar(45) NOT NULL,
-  `partner_id` bigint(20) DEFAULT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`role_id`),
-  KEY `FK_PARTNER_idx` (`partner_id`),
-  CONSTRAINT `FK_ROLE_PARTNER` FOREIGN KEY (`partner_id`) REFERENCES `APG_Partner` (`PartnerID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
-;
--- !40101 SET character_set_client = @saved_cs_client  
 
 
 -- !40101 SET character_set_client = @saved_cs_client  
@@ -990,44 +1028,7 @@ CREATE TABLE `APG_TransactionMetaData` (
 ;
 -- !40101 SET character_set_client = @saved_cs_client  
 
---
--- Table structure for table `APG_TransactionPayment`
---
 
-DROP TABLE IF EXISTS `APG_TransactionPayment`
-;
--- !40101 SET @saved_cs_client     = @@character_set_client  
--- !40101 SET character_set_client = utf8  
-CREATE TABLE `APG_TransactionPayment` (
-  `PaymentID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `TransactionID` bigint(20) NOT NULL,
-  `PaymentRefID` varchar(20) NOT NULL,
-  `PaymentType` varchar(20) NOT NULL,
-  `PaymentProviderKey` varchar(20) NOT NULL,
-  `Amount` text NOT NULL,
-  `Status` int(11) NOT NULL,
-  `errorcode` varchar(100) DEFAULT NULL,
-  `errordesc` text,
-  `createddateutc` datetime NOT NULL,
-  `LastModifiedUTC` datetime DEFAULT NULL,
-  `RetryCount` int(11) NOT NULL,
-  `TransType` varchar(10) NOT NULL,
-  `BankApprovalCode` varchar(100) DEFAULT NULL,
-  `ApprovalDate` datetime DEFAULT NULL,
-  `CCValidation` tinyint(4) NOT NULL,
-  `CardReplacement` tinyint(4) NOT NULL,
-  `MID` varchar(100) NOT NULL,
-  `Bank` varchar(100) NOT NULL,
-  `FavCardDataKey` bigint(20) DEFAULT NULL,
-  `ipAddress` text,
-  `userAgent` text,
-  PRIMARY KEY (`PaymentID`),
-  KEY `TransactionID` (`TransactionID`),
-  KEY `TransactionID_2` (`TransactionID`),
-  CONSTRAINT `FK_TID` FOREIGN KEY (`TransactionID`) REFERENCES `APG_Transaction` (`TransactionID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6605 DEFAULT CHARSET=latin1
-;
--- !40101 SET character_set_client = @saved_cs_client  
 
 --
 -- Table structure for table `APG_TransactionPaymentRefund`
@@ -1123,7 +1124,22 @@ CREATE TABLE `APG_Transaction_EPPInfo` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2723 DEFAULT CHARSET=latin1
 ;
 -- !40101 SET character_set_client = @saved_cs_client  
+--
+-- Table structure for table `APG_Users`
+--
 
+DROP TABLE IF EXISTS `APG_Users`
+;
+-- !40101 SET @saved_cs_client     = @@character_set_client  
+-- !40101 SET character_set_client = utf8  
+CREATE TABLE `APG_Users` (
+  `user_id` varchar(50) NOT NULL,
+  `status` tinyint(4) NOT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `user_id_UNIQUE` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+;
+-- !40101 SET character_set_client = @saved_cs_client  
 --
 -- Table structure for table `APG_User_Role`
 --
@@ -1145,22 +1161,7 @@ CREATE TABLE `APG_User_Role` (
 ;
 -- !40101 SET character_set_client = @saved_cs_client  
 
---
--- Table structure for table `APG_Users`
---
 
-DROP TABLE IF EXISTS `APG_Users`
-;
--- !40101 SET @saved_cs_client     = @@character_set_client  
--- !40101 SET character_set_client = utf8  
-CREATE TABLE `APG_Users` (
-  `user_id` varchar(50) NOT NULL,
-  `status` tinyint(4) NOT NULL,
-  PRIMARY KEY (`user_id`),
-  UNIQUE KEY `user_id_UNIQUE` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
-;
--- !40101 SET character_set_client = @saved_cs_client  
 
 --
 -- Table structure for table `APG_paymentInfo_MBB`
