@@ -483,6 +483,25 @@ CREATE TABLE `APG_FailedSubmitTransaction` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
 ;
 -- !40101 SET character_set_client = @saved_cs_client  
+--
+-- Table structure for table `APG_FraudCheck_Configuration`
+--
+
+DROP TABLE IF EXISTS `APG_FraudCheck_Configuration`
+;
+-- !40101 SET @saved_cs_client     = @@character_set_client  
+-- !40101 SET character_set_client = utf8  
+CREATE TABLE `APG_FraudCheck_Configuration` (
+  `APG_FraudCheck_ConfigurationID` int(11) NOT NULL AUTO_INCREMENT,
+  `Service` varchar(100) NOT NULL,
+  `GroupKey` varchar(60) NOT NULL,
+  `ConfigKey` varchar(45) DEFAULT NULL,
+  `ConfigValue` text,
+  `Status` tinyint(4) NOT NULL,
+  PRIMARY KEY (`APG_FraudCheck_ConfigurationID`)
+) ENGINE=InnoDB AUTO_INCREMENT=310 DEFAULT CHARSET=latin1
+;
+-- !40101 SET character_set_client = @saved_cs_client  
 
 --
 -- Table structure for table `APG_FraudCheck`
@@ -518,25 +537,7 @@ CREATE TABLE `APG_FraudCheck` (
 ;
 -- !40101 SET character_set_client = @saved_cs_client  
 
---
--- Table structure for table `APG_FraudCheck_Configuration`
---
 
-DROP TABLE IF EXISTS `APG_FraudCheck_Configuration`
-;
--- !40101 SET @saved_cs_client     = @@character_set_client  
--- !40101 SET character_set_client = utf8  
-CREATE TABLE `APG_FraudCheck_Configuration` (
-  `APG_FraudCheck_ConfigurationID` int(11) NOT NULL AUTO_INCREMENT,
-  `Service` varchar(100) NOT NULL,
-  `GroupKey` varchar(60) NOT NULL,
-  `ConfigKey` varchar(45) DEFAULT NULL,
-  `ConfigValue` text,
-  `Status` tinyint(4) NOT NULL,
-  PRIMARY KEY (`APG_FraudCheck_ConfigurationID`)
-) ENGINE=InnoDB AUTO_INCREMENT=310 DEFAULT CHARSET=latin1
-;
--- !40101 SET character_set_client = @saved_cs_client  
 
 --
 -- Table structure for table `APG_FraudCheck_Remarks`
