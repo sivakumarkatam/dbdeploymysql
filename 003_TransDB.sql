@@ -182,6 +182,23 @@ CREATE TABLE `APG_Transaction` (
 ) ENGINE=InnoDB AUTO_INCREMENT=11491 DEFAULT CHARSET=latin1
 ;
 --
+-- Table structure for table `APG_TransactionType`
+--
+
+DROP TABLE IF EXISTS `APG_TransactionType`
+;
+-- !40101 SET @saved_cs_client     = @@character_set_client  
+-- !40101 SET character_set_client = utf8  
+CREATE TABLE `APG_TransactionType` (
+  `TransactionTypeID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `TransactionType` varchar(10) NOT NULL,
+  `TransactionTypeShortName` varchar(1) NOT NULL,
+  PRIMARY KEY (`TransactionTypeID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+;
+-- !40101 SET character_set_client = @saved_cs_client  
+
+--
 -- Table structure for table `APG_Currency`
 --
 
@@ -1060,22 +1077,7 @@ CREATE TABLE `APG_TransactionPaymentReverse` (
 ;
 -- !40101 SET character_set_client = @saved_cs_client  
 
---
--- Table structure for table `APG_TransactionType`
---
 
-DROP TABLE IF EXISTS `APG_TransactionType`
-;
--- !40101 SET @saved_cs_client     = @@character_set_client  
--- !40101 SET character_set_client = utf8  
-CREATE TABLE `APG_TransactionType` (
-  `TransactionTypeID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `TransactionType` varchar(10) NOT NULL,
-  `TransactionTypeShortName` varchar(1) NOT NULL,
-  PRIMARY KEY (`TransactionTypeID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
-;
--- !40101 SET character_set_client = @saved_cs_client  
 
 --
 -- Table structure for table `APG_TransactionUser`
