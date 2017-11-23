@@ -181,6 +181,25 @@ CREATE TABLE `APG_Transaction` (
   PRIMARY KEY (`TransactionID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11491 DEFAULT CHARSET=latin1
 ;
+--
+-- Table structure for table `APG_Currency`
+--
+
+DROP TABLE IF EXISTS `APG_Currency`
+;
+-- !40101 SET @saved_cs_client     = @@character_set_client  
+-- !40101 SET character_set_client = utf8  
+CREATE TABLE `APG_Currency` (
+  `CurrencyId` int(11) NOT NULL AUTO_INCREMENT,
+  `Currency` varchar(100) NOT NULL,
+  `Location` varchar(1000) NOT NULL,
+  `ThreeLetterISOCode` varchar(3) NOT NULL,
+  `NumericISOCode` varchar(3) NOT NULL,
+  `Published` tinyint(4) NOT NULL,
+  `DisplayOrder` tinyint(4) NOT NULL,
+  PRIMARY KEY (`CurrencyId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+;
 
 --
 -- Table structure for table `APG_AdditionalCharges`
@@ -376,25 +395,7 @@ CREATE TABLE `APG_Channel_TransactionType` (
 ;
 -- !40101 SET character_set_client = @saved_cs_client  
 
---
--- Table structure for table `APG_Currency`
---
 
-DROP TABLE IF EXISTS `APG_Currency`
-;
--- !40101 SET @saved_cs_client     = @@character_set_client  
--- !40101 SET character_set_client = utf8  
-CREATE TABLE `APG_Currency` (
-  `CurrencyId` int(11) NOT NULL AUTO_INCREMENT,
-  `Currency` varchar(100) NOT NULL,
-  `Location` varchar(1000) NOT NULL,
-  `ThreeLetterISOCode` varchar(3) NOT NULL,
-  `NumericISOCode` varchar(3) NOT NULL,
-  `Published` tinyint(4) NOT NULL,
-  `DisplayOrder` tinyint(4) NOT NULL,
-  PRIMARY KEY (`CurrencyId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
-;
 -- !40101 SET character_set_client = @saved_cs_client  
 
 --
