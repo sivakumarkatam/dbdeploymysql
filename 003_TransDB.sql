@@ -44,6 +44,25 @@ CREATE TABLE `APGADMIN_CCExpirySchedular_Settings` (
 --
 -- Table structure for table `APG_Channel`
 --
+--
+-- Table structure for table `APG_PaymentProvider`
+--
+
+DROP TABLE IF EXISTS `APG_PaymentProvider`
+;
+-- !40101 SET @saved_cs_client     = @@character_set_client  
+-- !40101 SET character_set_client = utf8  
+CREATE TABLE `APG_PaymentProvider` (
+  `ProviderID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(100) NOT NULL,
+  `ProviderType` varchar(10) NOT NULL,
+  `ProviderKey` varchar(50) NOT NULL,
+  `Status` tinyint(4) NOT NULL,
+  `IsDeleted` tinyint(4) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`ProviderID`),
+  UNIQUE KEY `ProviderKey_UNIQUE` (`ProviderKey`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+;
 
 DROP TABLE IF EXISTS `APG_Channel`
 ;
@@ -639,25 +658,7 @@ CREATE TABLE `APG_PaymentInfo_PBB` (
 ;
 -- !40101 SET character_set_client = @saved_cs_client  
 
---
--- Table structure for table `APG_PaymentProvider`
---
 
-DROP TABLE IF EXISTS `APG_PaymentProvider`
-;
--- !40101 SET @saved_cs_client     = @@character_set_client  
--- !40101 SET character_set_client = utf8  
-CREATE TABLE `APG_PaymentProvider` (
-  `ProviderID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `Name` varchar(100) NOT NULL,
-  `ProviderType` varchar(10) NOT NULL,
-  `ProviderKey` varchar(50) NOT NULL,
-  `Status` tinyint(4) NOT NULL,
-  `IsDeleted` tinyint(4) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`ProviderID`),
-  UNIQUE KEY `ProviderKey_UNIQUE` (`ProviderKey`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
-;
 -- !40101 SET character_set_client = @saved_cs_client  
 
 --
