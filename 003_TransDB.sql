@@ -41,6 +41,34 @@ CREATE TABLE `APGADMIN_CCExpirySchedular_Settings` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1
 ;
 -- !40101 SET character_set_client = @saved_cs_client  
+--
+-- Table structure for table `APG_Channel`
+--
+
+DROP TABLE IF EXISTS `APG_Channel`
+;
+-- !40101 SET @saved_cs_client     = @@character_set_client  
+-- !40101 SET character_set_client = utf8  
+CREATE TABLE `APG_Channel` (
+  `ChannelID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `ChannelKey` varchar(50) NOT NULL,
+  `PartnerID` bigint(20) NOT NULL,
+  `PrefixTransactionID` varchar(50) DEFAULT NULL,
+  `Status` tinyint(4) NOT NULL,
+  `CreatedDateUTC` datetime NOT NULL,
+  `LastModifiedUTC` datetime DEFAULT NULL,
+  `DefaultProviderKey` varchar(50) NOT NULL,
+  `isDeleted` tinyint(4) NOT NULL,
+  `DefaultProviderId` bigint(20) NOT NULL,
+  PRIMARY KEY (`ChannelID`),
+  UNIQUE KEY `ChannelKey` (`ChannelKey`,`PartnerID`),
+  KEY `PartnerID` (`PartnerID`),
+  KEY `DefaultProviderId` (`DefaultProviderId`),
+  CONSTRAINT `FK_CHANNEL_PID` FOREIGN KEY (`PartnerID`) REFERENCES `APG_Partner` (`PartnerID`),
+  CONSTRAINT `FK_PID_CHANNEL` FOREIGN KEY (`DefaultProviderId`) REFERENCES `APG_PaymentProvider` (`ProviderID`),
+  CONSTRAINT `FKctb2mhqmho8wmrexn9omj1spx` FOREIGN KEY (`PartnerID`) REFERENCES `APG_Partner` (`PartnerID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+;
 
 --
 -- Table structure for table `APGADMIN_Validation_Settings`
@@ -110,6 +138,43 @@ CREATE TABLE `APG_BinList` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
 ;
 -- !40101 SET character_set_client = @saved_cs_client  
+--
+-- Table structure for table `APG_Partner`
+--
+
+DROP TABLE IF EXISTS `APG_Partner`
+;
+-- !40101 SET @saved_cs_client     = @@character_set_client  
+-- !40101 SET character_set_client = utf8  
+CREATE TABLE `APG_Partner` (
+  `PartnerID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `PartnerKey` varchar(50) NOT NULL,
+  `Name` varchar(100) NOT NULL,
+  `Status` tinyint(4) NOT NULL,
+  `BannerURL` varchar(150) DEFAULT NULL,
+  `DomainURL` text NOT NULL,
+  `TransPerCardLimit` bigint(20) NOT NULL,
+  `TransPerCardValue` bigint(20) NOT NULL,
+  `DisplayItemDetail` tinyint(4) NOT NULL,
+  `EnableGeoIP` tinyint(4) NOT NULL,
+  `EnableBlacklistIP` tinyint(4) NOT NULL,
+  `AllowNoIp` tinyint(4) NOT NULL,
+  `AllowChangeAmount` tinyint(4) NOT NULL,
+  `AllowEmailFeature` tinyint(4) NOT NULL,
+  `AllowDirectLinkFeature` tinyint(4) NOT NULL,
+  `AllowEmotoLastUsedCC` tinyint(4) NOT NULL,
+  `OptionalEmotoCVV` tinyint(4) NOT NULL,
+  `RememberCard` tinyint(4) NOT NULL,
+  `PartnerUserKeyType` smallint(6) NOT NULL,
+  `PVSPassword` varchar(50) NOT NULL,
+  `SupportBinList` tinyint(4) NOT NULL,
+  `IsDeleted` bigint(25) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`PartnerID`),
+  UNIQUE KEY `PartnerKey_UNIQUE` (`PartnerKey`,`IsDeleted`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+;
+-- !40101 SET character_set_client = @saved_cs_client  
+
 
 --
 -- Table structure for table `APG_BlacklistCards`
@@ -131,34 +196,7 @@ CREATE TABLE `APG_BlacklistCards` (
 ;
 -- !40101 SET character_set_client = @saved_cs_client  
 
---
--- Table structure for table `APG_Channel`
---
 
-DROP TABLE IF EXISTS `APG_Channel`
-;
--- !40101 SET @saved_cs_client     = @@character_set_client  
--- !40101 SET character_set_client = utf8  
-CREATE TABLE `APG_Channel` (
-  `ChannelID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `ChannelKey` varchar(50) NOT NULL,
-  `PartnerID` bigint(20) NOT NULL,
-  `PrefixTransactionID` varchar(50) DEFAULT NULL,
-  `Status` tinyint(4) NOT NULL,
-  `CreatedDateUTC` datetime NOT NULL,
-  `LastModifiedUTC` datetime DEFAULT NULL,
-  `DefaultProviderKey` varchar(50) NOT NULL,
-  `isDeleted` tinyint(4) NOT NULL,
-  `DefaultProviderId` bigint(20) NOT NULL,
-  PRIMARY KEY (`ChannelID`),
-  UNIQUE KEY `ChannelKey` (`ChannelKey`,`PartnerID`),
-  KEY `PartnerID` (`PartnerID`),
-  KEY `DefaultProviderId` (`DefaultProviderId`),
-  CONSTRAINT `FK_CHANNEL_PID` FOREIGN KEY (`PartnerID`) REFERENCES `APG_Partner` (`PartnerID`),
-  CONSTRAINT `FK_PID_CHANNEL` FOREIGN KEY (`DefaultProviderId`) REFERENCES `APG_PaymentProvider` (`ProviderID`),
-  CONSTRAINT `FKctb2mhqmho8wmrexn9omj1spx` FOREIGN KEY (`PartnerID`) REFERENCES `APG_Partner` (`PartnerID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
-;
 -- !40101 SET character_set_client = @saved_cs_client  
 
 --
@@ -502,42 +540,6 @@ CREATE TABLE `APG_PBB_Bank_Codes` (
 ;
 -- !40101 SET character_set_client = @saved_cs_client  
 
---
--- Table structure for table `APG_Partner`
---
-
-DROP TABLE IF EXISTS `APG_Partner`
-;
--- !40101 SET @saved_cs_client     = @@character_set_client  
--- !40101 SET character_set_client = utf8  
-CREATE TABLE `APG_Partner` (
-  `PartnerID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `PartnerKey` varchar(50) NOT NULL,
-  `Name` varchar(100) NOT NULL,
-  `Status` tinyint(4) NOT NULL,
-  `BannerURL` varchar(150) DEFAULT NULL,
-  `DomainURL` text NOT NULL,
-  `TransPerCardLimit` bigint(20) NOT NULL,
-  `TransPerCardValue` bigint(20) NOT NULL,
-  `DisplayItemDetail` tinyint(4) NOT NULL,
-  `EnableGeoIP` tinyint(4) NOT NULL,
-  `EnableBlacklistIP` tinyint(4) NOT NULL,
-  `AllowNoIp` tinyint(4) NOT NULL,
-  `AllowChangeAmount` tinyint(4) NOT NULL,
-  `AllowEmailFeature` tinyint(4) NOT NULL,
-  `AllowDirectLinkFeature` tinyint(4) NOT NULL,
-  `AllowEmotoLastUsedCC` tinyint(4) NOT NULL,
-  `OptionalEmotoCVV` tinyint(4) NOT NULL,
-  `RememberCard` tinyint(4) NOT NULL,
-  `PartnerUserKeyType` smallint(6) NOT NULL,
-  `PVSPassword` varchar(50) NOT NULL,
-  `SupportBinList` tinyint(4) NOT NULL,
-  `IsDeleted` bigint(25) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`PartnerID`),
-  UNIQUE KEY `PartnerKey_UNIQUE` (`PartnerKey`,`IsDeleted`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
-;
--- !40101 SET character_set_client = @saved_cs_client  
 
 --
 -- Table structure for table `APG_PartnerDirectLink`
