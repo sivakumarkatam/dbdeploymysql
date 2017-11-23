@@ -145,6 +145,42 @@ CREATE TABLE `APGADMIN_Validation_Settings` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1
 ;
 -- !40101 SET character_set_client = @saved_cs_client  
+--
+-- Table structure for table `APG_Transaction`
+--
+
+DROP TABLE IF EXISTS `APG_Transaction`
+;
+-- !40101 SET @saved_cs_client     = @@character_set_client  
+-- !40101 SET character_set_client = utf8  
+CREATE TABLE `APG_Transaction` (
+  `TransactionID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `partnerKey` varchar(50) NOT NULL,
+  `partnerrefno` varchar(50) DEFAULT NULL,
+  `transtype` varchar(10) DEFAULT NULL,
+  `paymenttype` varchar(20) DEFAULT NULL,
+  `paymentsource` varchar(20) DEFAULT NULL,
+  `title` varchar(100) DEFAULT NULL,
+  `currencycode` varchar(20) DEFAULT NULL,
+  `currencyexp` int(11) DEFAULT NULL,
+  `shippingamount` bigint(11) DEFAULT NULL,
+  `taxamount` bigint(11) DEFAULT NULL,
+  `itemtotalamount` bigint(11) DEFAULT NULL,
+  `totalamount` bigint(11) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `transactionrefid` varchar(50) DEFAULT NULL,
+  `responseURL` varchar(250) DEFAULT NULL,
+  `createdateutc` datetime DEFAULT NULL,
+  `LastModifiedUTC` datetime DEFAULT NULL,
+  `ChannelKey` varchar(50) DEFAULT NULL,
+  `isepp` tinyint(1) DEFAULT NULL,
+  `AgentID` varchar(250) DEFAULT NULL,
+  `isValidation` tinyint(1) NOT NULL DEFAULT '0',
+  `isDirectLink` tinyint(1) DEFAULT NULL,
+  `isQuickPayCSC` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`TransactionID`)
+) ENGINE=InnoDB AUTO_INCREMENT=11491 DEFAULT CHARSET=latin1
+;
 
 --
 -- Table structure for table `APG_AdditionalCharges`
@@ -850,42 +886,7 @@ CREATE TABLE `APG_Roles` (
 ;
 -- !40101 SET character_set_client = @saved_cs_client  
 
---
--- Table structure for table `APG_Transaction`
---
 
-DROP TABLE IF EXISTS `APG_Transaction`
-;
--- !40101 SET @saved_cs_client     = @@character_set_client  
--- !40101 SET character_set_client = utf8  
-CREATE TABLE `APG_Transaction` (
-  `TransactionID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `partnerKey` varchar(50) NOT NULL,
-  `partnerrefno` varchar(50) DEFAULT NULL,
-  `transtype` varchar(10) DEFAULT NULL,
-  `paymenttype` varchar(20) DEFAULT NULL,
-  `paymentsource` varchar(20) DEFAULT NULL,
-  `title` varchar(100) DEFAULT NULL,
-  `currencycode` varchar(20) DEFAULT NULL,
-  `currencyexp` int(11) DEFAULT NULL,
-  `shippingamount` bigint(11) DEFAULT NULL,
-  `taxamount` bigint(11) DEFAULT NULL,
-  `itemtotalamount` bigint(11) DEFAULT NULL,
-  `totalamount` bigint(11) DEFAULT NULL,
-  `status` int(11) DEFAULT NULL,
-  `transactionrefid` varchar(50) DEFAULT NULL,
-  `responseURL` varchar(250) DEFAULT NULL,
-  `createdateutc` datetime DEFAULT NULL,
-  `LastModifiedUTC` datetime DEFAULT NULL,
-  `ChannelKey` varchar(50) DEFAULT NULL,
-  `isepp` tinyint(1) DEFAULT NULL,
-  `AgentID` varchar(250) DEFAULT NULL,
-  `isValidation` tinyint(1) NOT NULL DEFAULT '0',
-  `isDirectLink` tinyint(1) DEFAULT NULL,
-  `isQuickPayCSC` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`TransactionID`)
-) ENGINE=InnoDB AUTO_INCREMENT=11491 DEFAULT CHARSET=latin1
-;
 -- !40101 SET character_set_client = @saved_cs_client  
 
 --
